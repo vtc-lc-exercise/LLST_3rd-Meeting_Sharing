@@ -4,27 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech-Enhanced Learning Practices</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            pink: '#F472B6',     
-                            rose: '#FB7185',     
-                            lavender: '#C084FC', 
-                            peach: '#FB923C',    
-                            darktext: '#4C1D95'  
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            400: '#a78bfa',
+                            500: '#8b5cf6', // Violet
+                            600: '#7c3aed',
+                            900: '#4c1d95',
+                        },
+                        accent: {
+                            500: '#f43f5e', // Rose
+                            400: '#fb7185',
                         }
                     }
                 }
@@ -33,22 +35,53 @@
     </script>
 
     <style>
-        /* 動態漸變背景 CSS */
         body {
-            /* 使用柔和嘅粉紅同淺紫漸變 */
-            background: linear-gradient(-45deg, #FFF1F2, #FCE7F3, #F3E8FF, #FFE4E6);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #4C1D95; 
+            background-color: #f8fafc;
+            color: #334155;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
-        /* 控制漸變流動嘅動畫 */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* 微波點圖案 (Subtle Dot Pattern) */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.4;
+            z-index: -2;
+        }
+
+        /* 動態漸變光暈 (Floating Orbs) */
+        .bg-blob {
+            position: fixed;
+            filter: blur(90px);
+            z-index: -1;
+            opacity: 0.5;
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(30px, -50px) scale(1.1) rotate(10deg); }
+            66% { transform: translate(-20px, 20px) scale(0.9) rotate(-5deg); }
+            100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+        }
+
+        /* 乾淨嘅白色卡片 (Glassmorphism) */
+        .clean-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.5);
+            border-radius: 1.5rem;
+            position: relative;
+            z-index: 10;
         }
 
         /* Flip Card Base CSS */
@@ -63,7 +96,7 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
             transform-style: preserve-3d;
         }
 
@@ -82,68 +115,98 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+        }
+
+        .flip-card-front {
+            border: 1px solid rgba(255, 255, 255, 0.9);
         }
 
         .flip-card-back {
             transform: rotateY(180deg);
+            background: rgba(248, 250, 252, 0.95);
+        }
+
+        /* 漸變文字 */
+        .text-gradient {
+            background: linear-gradient(135deg, #7c3aed, #f43f5e, #fb923c);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
         }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-rose selection:text-white">
+<body class="antialiased selection:bg-brand-100 selection:text-brand-900">
+
+    <!-- 背景裝飾 -->
+    <div class="bg-pattern"></div>
+    <div class="bg-blob w-[500px] h-[500px] bg-brand-500/30 top-[-10%] left-[-10%]"></div>
+    <div class="bg-blob w-[600px] h-[600px] bg-accent-500/20 bottom-[-10%] right-[-10%]" style="animation-delay: -3s;"></div>
+    <div class="bg-blob w-[400px] h-[400px] bg-sky-400/20 top-[40%] left-[60%]" style="animation-delay: -7s;"></div>
+    <div class="bg-blob w-[300px] h-[300px] bg-amber-300/20 bottom-[30%] left-[10%]" style="animation-delay: -11s;"></div>
 
     <!-- 1. HERO SECTION -->
-    <section id="hero-section" class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative border-b-8 border-brand-pink/30">
-        <div class="inline-block px-5 py-2 rounded-full bg-white/80 backdrop-blur-sm text-brand-pink font-bold tracking-wider text-sm md:text-base mb-8 uppercase shadow-sm border border-pink-200">
-            Language Learning Support Team • 3rd Meeting
+    <section id="hero-section" class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative z-10">
+        <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/80 backdrop-blur-sm border border-white/50 shadow-sm text-brand-600 font-semibold text-base mb-8 hover:scale-105 transition-transform">
+            <i class="fa-solid fa-sparkles text-accent-400 text-lg"></i>
+            LLST • 3rd Meeting
         </div>
-        <h1 class="text-6xl md:text-8xl font-black text-brand-darktext leading-tight mb-6 drop-shadow-sm">
+        
+        <h1 class="text-6xl md:text-8xl font-extrabold leading-tight mb-8 tracking-tight text-slate-800">
             Tech-Enhanced <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-pink to-brand-lavender">Learning Practices</span>
+            <span class="text-gradient">Learning Practices</span><br>
+            <span class="text-3xl md:text-5xl text-slate-600 mt-4 block font-bold">in YC(KC) & YC(PF)</span>
         </h1>
-        <p class="text-2xl md:text-3xl text-purple-800/70 font-medium mb-12">
-            Presented by <span class="text-brand-darktext font-bold">Elaine YANG</span>
+        
+        <p class="text-xl md:text-2xl text-slate-500 font-medium mb-12 flex flex-wrap justify-center items-center gap-3">
+            Presented by <span class="font-bold text-slate-800 bg-white/60 backdrop-blur-md px-5 py-2 rounded-lg border border-white/50 shadow-sm">Elaine YANG | LC/YC(PF)</span>
         </p>
         
-        <!-- Down Arrow to Section 2 -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-            <a href="#why-section" onclick="scrollToSection(event, 'why-section')" class="animate-bounce w-14 h-14 bg-white/90 backdrop-blur-sm text-brand-pink rounded-full flex items-center justify-center text-2xl hover:bg-brand-pink hover:text-white transition-colors shadow-lg border border-pink-200">
+            <a href="#why-section" onclick="scrollToSection(event, 'why-section')" class="animate-bounce w-14 h-14 bg-white/90 backdrop-blur-sm shadow-md rounded-full flex items-center justify-center text-xl text-slate-400 hover:text-brand-600 hover:shadow-lg transition-all border border-white">
                 <i class="fa-solid fa-arrow-down"></i>
             </a>
         </div>
     </section>
 
     <!-- 2. THE "WHY" SECTION -->
-    <section id="why-section" class="min-h-screen flex flex-col justify-center items-center px-6 relative w-full border-b-8 border-brand-pink/30">
-        <div class="max-w-7xl w-full mx-auto">
-            <h2 class="text-5xl font-black text-center mb-6 text-brand-darktext drop-shadow-sm">Why Build HTML Platforms?</h2>
-            <p class="text-xl text-purple-500 text-center mb-12 font-medium">Click the cards to reveal the truth ✨</p>
+    <section id="why-section" class="min-h-screen flex flex-col justify-center items-center px-6 relative w-full z-10">
+        <div class="max-w-6xl w-full mx-auto">
+            <div class="text-center mb-14">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-800 mb-5">Why We Need an Upgrade</h2>
+                <p class="text-slate-500 text-lg font-medium bg-white/50 inline-block px-5 py-2 rounded-full backdrop-blur-sm">Click the cards to reveal the difference</p>
+            </div>
             
             <div class="grid md:grid-cols-2 gap-12">
-                
                 <!-- Flip Card: The Old Way -->
-                <div class="flip-card h-[400px]" onclick="flipOnce(this)">
-                    <div class="flip-card-inner shadow-lg rounded-3xl">
-                        <!-- Front -->
-                        <div class="flip-card-front bg-white/90 backdrop-blur-md border-t-8 border-purple-200">
-                            <div class="w-24 h-24 rounded-full bg-purple-100 flex items-center justify-center text-4xl text-purple-400 mb-6">
-                                <i class="fa-solid fa-face-frown"></i>
+                <div class="flip-card h-[420px]" onclick="flipOnce(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center text-4xl text-slate-400 mb-8">
+                                <i class="fa-solid fa-person-chalkboard"></i>
                             </div>
-                            <h3 class="text-4xl font-bold text-purple-900">The Old Way</h3>
+                            <h3 class="text-3xl font-bold text-slate-700">Traditional Method</h3>
                         </div>
-                        <!-- Back -->
-                        <div class="flip-card-back bg-white/95 backdrop-blur-md border-t-8 border-purple-200">
-                            <ul class="space-y-6 text-xl text-purple-800/80 font-medium text-left w-full px-4">
+                        <div class="flip-card-back border-2 border-slate-300">
+                            <ul class="space-y-6 text-lg md:text-xl text-slate-600 font-medium text-left w-full px-4">
                                 <li class="flex items-start gap-4">
-                                    <i class="fa-solid fa-xmark text-brand-rose mt-1 text-2xl"></i>
+                                    <i class="fa-solid fa-minus text-slate-400 mt-1.5"></i>
                                     <span>Info boards are too <strong>passive</strong>.</span>
                                 </li>
                                 <li class="flex items-start gap-4">
-                                    <i class="fa-solid fa-xmark text-brand-rose mt-1 text-2xl"></i>
+                                    <i class="fa-solid fa-minus text-slate-400 mt-1.5"></i>
                                     <span>Students rarely take photos or save info.</span>
                                 </li>
                                 <li class="flex items-start gap-4">
-                                    <i class="fa-solid fa-xmark text-brand-rose mt-1 text-2xl"></i>
+                                    <i class="fa-solid fa-minus text-slate-400 mt-1.5"></i>
                                     <span>They leave empty-handed after the activity.</span>
                                 </li>
                             </ul>
@@ -152,147 +215,186 @@
                 </div>
 
                 <!-- Flip Card: The New Experience -->
-                <div class="flip-card h-[400px]" onclick="flipOnce(this)">
-                    <div class="flip-card-inner shadow-xl rounded-3xl">
-                        <!-- Front -->
-                        <div class="flip-card-front bg-white/90 backdrop-blur-md border-t-8 border-brand-pink">
-                            <div class="w-24 h-24 rounded-full bg-brand-pink flex items-center justify-center text-4xl text-white shadow-md mb-6">
-                                <i class="fa-solid fa-heart"></i>
+                <div class="flip-card h-[420px]" onclick="flipOnce(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-24 h-24 rounded-full bg-brand-50 flex items-center justify-center text-4xl text-brand-500 mb-8 shadow-inner">
+                                <i class="fa-solid fa-lightbulb"></i>
                             </div>
-                            <h3 class="text-4xl font-bold text-brand-pink">The New Experience</h3>
+                            <h3 class="text-3xl font-bold text-slate-800">Tech-Enhanced</h3>
                         </div>
-                        <!-- Back -->
-                        <div class="flip-card-back bg-white/95 backdrop-blur-md border-t-8 border-brand-pink">
-                            <ul class="space-y-6 text-xl text-purple-900 font-medium text-left w-full px-4">
+                        <div class="flip-card-back border-2 border-brand-500">
+                            <ul class="space-y-6 text-lg md:text-xl text-slate-700 font-medium text-left w-full px-4">
                                 <li class="flex items-start gap-4">
-                                    <i class="fa-solid fa-star text-brand-pink mt-1 text-2xl"></i>
+                                    <i class="fa-solid fa-check text-brand-500 mt-1.5"></i>
                                     <span><strong>One Link</strong> is all they need (QR friendly).</span>
                                 </li>
                                 <li class="flex items-start gap-4">
-                                    <i class="fa-solid fa-star text-brand-pink mt-1 text-2xl"></i>
+                                    <i class="fa-solid fa-check text-brand-500 mt-1.5"></i>
                                     <span>Rich elements: <strong>Images, AI Chatbots, Audio</strong>.</span>
                                 </li>
                                 <li class="flex items-start gap-4">
-                                    <i class="fa-solid fa-star text-brand-pink mt-1 text-2xl"></i>
+                                    <i class="fa-solid fa-check text-brand-500 mt-1.5"></i>
                                     <span>Direct link to <strong>Padlet</strong> for student products.</span>
                                 </li>
                                 <li class="flex items-start gap-4">
-                                    <i class="fa-solid fa-star text-brand-pink mt-1 text-2xl"></i>
+                                    <i class="fa-solid fa-check text-brand-500 mt-1.5"></i>
                                     <span>Speeds up progress & makes it <strong>fruitful</strong>!</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- Down Arrow to Section 3 -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-            <a href="#showcase-section" onclick="scrollToSection(event, 'showcase-section')" class="animate-bounce w-14 h-14 bg-white/90 backdrop-blur-sm text-brand-pink rounded-full flex items-center justify-center text-2xl hover:bg-brand-pink hover:text-white transition-colors shadow-lg border border-pink-200">
+            <a href="#showcase-section" onclick="scrollToSection(event, 'showcase-section')" class="animate-bounce w-14 h-14 bg-white/90 backdrop-blur-sm shadow-md rounded-full flex items-center justify-center text-xl text-slate-400 hover:text-brand-600 hover:shadow-lg transition-all border border-white">
                 <i class="fa-solid fa-arrow-down"></i>
             </a>
         </div>
     </section>
 
     <!-- 3. SHOWCASE SECTION -->
-    <section id="showcase-section" class="min-h-screen flex flex-col justify-center items-center px-6 relative w-full border-b-8 border-brand-pink/30">
-        <div class="max-w-6xl w-full mx-auto text-center">
-            <h2 class="text-5xl font-black mb-16 text-brand-darktext drop-shadow-sm">Live Showcase</h2>
+    <section id="showcase-section" class="min-h-screen flex flex-col justify-center items-center px-6 relative w-full z-10">
+        <div class="max-w-7xl w-full mx-auto text-center">
+            <div class="mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-800 mb-5">Activity Showcase</h2>
+                <p class="text-slate-500 text-lg font-medium bg-white/50 inline-block px-5 py-2 rounded-full backdrop-blur-sm">Explore our recent interactive deployments</p>
+            </div>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Activity 1 -->
-                <a href="https://vtc-lc-exercise.github.io/yckc-lc-llst-fashion-description/" target="_blank" class="group block bg-white/80 backdrop-blur-md hover:bg-brand-lavender rounded-3xl p-12 transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-purple-300 shadow-lg">
-                    <i class="fa-solid fa-shirt text-7xl mb-6 text-brand-lavender group-hover:text-white transition-colors"></i>
-                    <h3 class="text-3xl font-bold mb-4 text-brand-darktext group-hover:text-white">Cupid's Tee Party</h3>
-                    <div class="inline-flex items-center gap-2 text-lg font-semibold text-purple-500 group-hover:text-white">
-                        Launch <i class="fa-solid fa-arrow-right"></i>
+                <!-- 更新：將 p-10 pt-12 改為 p-8 pt-20 避免標籤重疊 -->
+                <a href="https://vtc-lc-exercise.github.io/yckc-lc-llst-fashion-description/" target="_blank" class="clean-card group block p-8 pt-20 relative transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
+                    <span class="absolute top-5 right-5 bg-rose-100 text-rose-600 px-3 py-1 rounded-full text-sm font-bold shadow-sm border border-rose-200">
+                        <i class="fa-regular fa-calendar mr-1"></i> Feb 2026
+                    </span>
+                    
+                    <div class="w-20 h-20 mx-auto bg-rose-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm border border-rose-100">
+                        <i class="fa-solid fa-shirt text-3xl text-rose-500"></i>
+                    </div>
+                    
+                    <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">LC x ProAct (Fashion)</p>
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800">Cupid's Tee Party</h3>
+                    
+                    <div class="inline-flex items-center gap-2 text-base font-bold text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                        View Project <i class="fa-solid fa-arrow-right"></i>
                     </div>
                 </a>
 
                 <!-- Activity 2 -->
-                <a href="https://vtc-lc-exercise.github.io/openday-pitchplease/" target="_blank" class="group block bg-white/80 backdrop-blur-md hover:bg-brand-rose rounded-3xl p-12 transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-rose-300 shadow-lg">
-                    <i class="fa-solid fa-briefcase text-7xl mb-6 text-brand-rose group-hover:text-white transition-colors"></i>
-                    <h3 class="text-3xl font-bold mb-4 text-brand-darktext group-hover:text-white">Pitch, please!</h3>
-                    <div class="inline-flex items-center gap-2 text-lg font-semibold text-rose-500 group-hover:text-white">
-                        Launch <i class="fa-solid fa-arrow-right"></i>
+                <!-- 更新：將 p-10 pt-12 改為 p-8 pt-20 避免標籤重疊 -->
+                <a href="https://vtc-lc-exercise.github.io/openday-pitchplease/" target="_blank" class="clean-card group block p-8 pt-20 relative transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
+                    <span class="absolute top-5 right-5 bg-brand-100 text-brand-600 px-3 py-1 rounded-full text-sm font-bold shadow-sm border border-brand-200">
+                        <i class="fa-regular fa-calendar mr-1"></i> Mar 2026
+                    </span>
+
+                    <div class="w-20 h-20 mx-auto bg-brand-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm border border-brand-100">
+                        <i class="fa-solid fa-briefcase text-3xl text-brand-500"></i>
+                    </div>
+                    
+                    <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">AY2526 YCKC Open Day</p>
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800">Pitch, please!</h3>
+                    
+                    <div class="inline-flex items-center gap-2 text-base font-bold text-brand-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                        View Project <i class="fa-solid fa-arrow-right"></i>
                     </div>
                 </a>
 
                 <!-- Activity 3 -->
-                <a href="https://vtc-lc-exercise.github.io/AY2526-LLSC-Car-tography/" target="_blank" class="group block bg-white/80 backdrop-blur-md hover:bg-brand-pink rounded-3xl p-12 transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-pink-300 shadow-lg">
-                    <i class="fa-solid fa-car text-7xl mb-6 text-brand-pink group-hover:text-white transition-colors"></i>
-                    <h3 class="text-3xl font-bold mb-4 text-brand-darktext group-hover:text-white">Car-tography</h3>
-                    <div class="inline-flex items-center gap-2 text-lg font-semibold text-pink-500 group-hover:text-white">
-                        Launch <i class="fa-solid fa-arrow-right"></i>
+                <!-- 更新：將 p-10 pt-12 改為 p-8 pt-20 避免標籤重疊 -->
+                <a href="https://vtc-lc-exercise.github.io/AY2526-LLSC-Car-tography/" target="_blank" class="clean-card group block p-8 pt-20 relative transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
+                    <span class="absolute top-5 right-5 bg-sky-100 text-sky-600 px-3 py-1 rounded-full text-sm font-bold shadow-sm border border-sky-200">
+                        <i class="fa-regular fa-calendar mr-1"></i> Apr & May 2026
+                    </span>
+
+                    <div class="w-20 h-20 mx-auto bg-sky-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm border border-sky-100">
+                        <i class="fa-solid fa-car text-3xl text-sky-500"></i>
+                    </div>
+                    
+                    <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">LC x ProAct (Automotive)</p>
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800">Car-tography of Signs</h3>
+                    
+                    <div class="inline-flex items-center gap-2 text-base font-bold text-sky-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                        View Project <i class="fa-solid fa-arrow-right"></i>
                     </div>
                 </a>
             </div>
         </div>
 
-        <!-- Down Arrow to Section 4 -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-            <a href="#takeaway-section" onclick="scrollToSection(event, 'takeaway-section')" class="animate-bounce w-14 h-14 bg-white/90 backdrop-blur-sm text-brand-pink rounded-full flex items-center justify-center text-2xl hover:bg-brand-pink hover:text-white transition-colors shadow-lg border border-pink-200">
+            <a href="#takeaway-section" onclick="scrollToSection(event, 'takeaway-section')" class="animate-bounce w-14 h-14 bg-white/90 backdrop-blur-sm shadow-md rounded-full flex items-center justify-center text-xl text-slate-400 hover:text-brand-600 hover:shadow-lg transition-all border border-white">
                 <i class="fa-solid fa-arrow-down"></i>
             </a>
         </div>
     </section>
 
     <!-- 4. THE TAKEAWAY -->
-    <section id="takeaway-section" class="min-h-screen flex flex-col justify-center items-center px-6 relative w-full">
-        <div class="max-w-6xl w-full mx-auto">
-            <h2 class="text-5xl font-black text-center mb-6 text-brand-darktext drop-shadow-sm">Why this approach?</h2>
-            <p class="text-2xl text-purple-500 text-center mb-16 font-medium">Click a card to reveal the benefits ✨</p>
+    <section id="takeaway-section" class="min-h-screen flex flex-col justify-center items-center px-6 relative w-full z-10">
+        <div class="max-w-7xl w-full mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-800 mb-5">Key Benefits</h2>
+                <p class="text-slate-500 text-lg font-medium bg-white/50 inline-block px-5 py-2 rounded-full backdrop-blur-sm">Click to reveal why this approach works</p>
+            </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 
-                <!-- Flip Card 1: HTML -->
-                <div class="flip-card h-[300px]" onclick="flipOnce(this)">
+                <!-- Benefit 1 -->
+                <div class="flip-card h-[340px]" onclick="flipOnce(this)">
                     <div class="flip-card-inner">
-                        <div class="flip-card-front bg-white/90 backdrop-blur-md border-[3px] border-pink-200 shadow-lg">
-                            <i class="fa-brands fa-html5 text-6xl text-brand-rose mb-4"></i>
-                            <h3 class="text-3xl font-bold text-brand-darktext">HTML Power</h3>
+                        <div class="flip-card-front hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-20 h-20 mx-auto bg-emerald-50 rounded-full flex items-center justify-center mb-6 shadow-inner border border-emerald-100">
+                                <i class="fa-solid fa-mobile-screen text-3xl text-emerald-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-emerald-600">Web Native</h3>
                         </div>
-                        <div class="flip-card-back bg-brand-rose text-white shadow-lg">
-                            <ul class="text-left text-xl space-y-4 font-medium">
-                                <li><i class="fa-solid fa-star mr-2"></i> No app installation</li>
-                                <li><i class="fa-solid fa-star mr-2"></i> Works on any phone</li>
-                                <li><i class="fa-solid fa-star mr-2"></i> Highly customizable</li>
+                        <div class="flip-card-back border-2 border-emerald-400">
+                            <h4 class="text-xl font-bold text-emerald-600 mb-6">Web Native</h4>
+                            <ul class="text-slate-600 text-lg space-y-4 font-medium text-left px-2">
+                                <li><i class="fa-solid fa-check text-emerald-400 mr-3"></i> No app installation needed</li>
+                                <li><i class="fa-solid fa-check text-emerald-400 mr-3"></i> Cross-platform ready</li>
+                                <li><i class="fa-solid fa-check text-emerald-400 mr-3"></i> Highly customizable</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Flip Card 2: AI -->
-                <div class="flip-card h-[300px]" onclick="flipOnce(this)">
+                <!-- Benefit 2 -->
+                <div class="flip-card h-[340px]" onclick="flipOnce(this)">
                     <div class="flip-card-inner">
-                        <div class="flip-card-front bg-white/90 backdrop-blur-md border-[3px] border-pink-200 shadow-lg">
-                            <i class="fa-solid fa-wand-magic-sparkles text-6xl text-brand-lavender mb-4"></i>
-                            <h3 class="text-3xl font-bold text-brand-darktext">AI Assisted</h3>
+                        <div class="flip-card-front hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-20 h-20 mx-auto bg-brand-50 rounded-full flex items-center justify-center mb-6 shadow-inner border border-brand-100">
+                                <i class="fa-solid fa-wand-magic-sparkles text-3xl text-brand-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-600">AI Accelerated</h3>
                         </div>
-                        <div class="flip-card-back bg-brand-lavender text-white shadow-lg">
-                            <ul class="text-left text-xl space-y-4 font-medium">
-                                <li><i class="fa-solid fa-star mr-2"></i> Fast code generation</li>
-                                <li><i class="fa-solid fa-star mr-2"></i> Easy to tweak & update</li>
-                                <li><i class="fa-solid fa-star mr-2"></i> Anyone can build it</li>
+                        <div class="flip-card-back border-2 border-brand-400">
+                            <h4 class="text-xl font-bold text-brand-600 mb-6">AI Accelerated</h4>
+                            <ul class="text-slate-600 text-lg space-y-4 font-medium text-left px-2">
+                                <li><i class="fa-solid fa-check text-brand-400 mr-3"></i> Fast content generation</li>
+                                <li><i class="fa-solid fa-check text-brand-400 mr-3"></i> Rapid iterations</li>
+                                <li><i class="fa-solid fa-check text-brand-400 mr-3"></i> Accessible building</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Flip Card 3: Cost -->
-                <div class="flip-card h-[300px]" onclick="flipOnce(this)">
+                <!-- Benefit 3 -->
+                <div class="flip-card h-[340px]" onclick="flipOnce(this)">
                     <div class="flip-card-inner">
-                        <div class="flip-card-front bg-white/90 backdrop-blur-md border-[3px] border-pink-200 shadow-lg">
-                            <i class="fa-solid fa-gem text-6xl text-brand-pink mb-4"></i>
-                            <h3 class="text-3xl font-bold text-brand-darktext">Low Cost</h3>
+                        <div class="flip-card-front hover:-translate-y-2 transition-transform duration-300">
+                            <div class="w-20 h-20 mx-auto bg-amber-50 rounded-full flex items-center justify-center mb-6 shadow-inner border border-amber-100">
+                                <i class="fa-solid fa-cloud-arrow-up text-3xl text-amber-500"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-amber-600">Cost Efficient</h3>
                         </div>
-                        <div class="flip-card-back bg-brand-pink text-white shadow-lg">
-                            <ul class="text-left text-xl space-y-4 font-medium">
-                                <li><i class="fa-solid fa-star mr-2"></i> Free GitHub hosting</li>
-                                <li><i class="fa-solid fa-star mr-2"></i> Zero printing costs</li>
-                                <li><i class="fa-solid fa-star mr-2"></i> Reusable for next year</li>
+                        <div class="flip-card-back border-2 border-amber-400">
+                            <h4 class="text-xl font-bold text-amber-600 mb-6">Cost Efficient</h4>
+                            <ul class="text-slate-600 text-lg space-y-4 font-medium text-left px-2">
+                                <li><i class="fa-solid fa-check text-amber-400 mr-3"></i> Free GitHub hosting</li>
+                                <li><i class="fa-solid fa-check text-amber-400 mr-3"></i> Zero printing costs</li>
+                                <li><i class="fa-solid fa-check text-amber-400 mr-3"></i> Sustainable assets</li>
                             </ul>
                         </div>
                     </div>
@@ -301,15 +403,13 @@
             </div>
         </div>
         
-        <!-- Footer positioned at the absolute bottom of the last section -->
-        <footer class="absolute bottom-4 text-center w-full text-purple-500 font-medium">
-            <p>Language Learning Support Team • Elaine YANG 🌸</p>
+        <!-- Footer -->
+        <footer class="absolute bottom-8 text-center w-full text-slate-500 font-medium text-base z-10">
+            <p class="bg-white/50 inline-block px-5 py-2 rounded-full backdrop-blur-sm">Language Learning Support Team • Elaine YANG</p>
         </footer>
     </section>
 
-    <!-- JavaScript for Interactions -->
     <script>
-        // Smooth Scroll Function
         function scrollToSection(event, sectionId) {
             event.preventDefault();
             const section = document.getElementById(sectionId);
@@ -321,7 +421,7 @@
             }
         }
 
-        // Click to Flip (Once)
+        // 點擊後翻轉，並保持翻轉狀態
         function flipOnce(cardElement) {
             const innerCard = cardElement.querySelector('.flip-card-inner');
             innerCard.classList.add('flipped');
